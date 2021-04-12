@@ -29,7 +29,7 @@ pt_coord_1 = get_interest_points(img_1)
 """
 2. Putative correspondences
 """
-p0, p1 = get_corr(img_0,img_1,pt_coord_0,pt_coord_1)
+p0, p1 = get_corr(img_0,img_1,pt_coord_0,pt_coord_1) #[x,y]
 
 
 #
@@ -46,7 +46,7 @@ p0, p1 = get_corr(img_0,img_1,pt_coord_0,pt_coord_1)
 # plt.imshow(points_0)
 # plt.figure(3)
 # plt.imshow(points_1)
-lab3.show_corresp(img_0,img_1,p0,p1, False)
+lab3.show_corresp(img_0,img_1,p0,p1)
 plt.show()
 
 

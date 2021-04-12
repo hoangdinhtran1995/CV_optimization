@@ -18,5 +18,7 @@ def get_corr(img_0, img_1, points_0, points_1, ROI_size = 15):
     # construct output
     p0 = points_0[:,pt_index_0]
     p1 = points_1[:,pt_index_1]
+    p0 = p0[::-1]
+    p1 = p1[::-1]
 
     return p0, p1
