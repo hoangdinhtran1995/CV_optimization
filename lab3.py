@@ -56,9 +56,14 @@ def load_stereo_pair():
     img2: np.ndarray
         Second image in pair
     """
+    # pair = 'indoors0'
+    # return [
+    #     load_image_grayscale(LAB3_IMAGE_DIRECTORY / f'{pair}{i}.png')
+    #     for i in (5, 6)
+    # ]
     pair = 'img'
     return [
-        load_image_grayscale(LAB3_IMAGE_DIRECTORY / f'{pair}{i}.png') 
+        load_image_grayscale(LAB3_IMAGE_DIRECTORY / f'{pair}{i}.png')
         for i in (1, 2)
     ]
 
