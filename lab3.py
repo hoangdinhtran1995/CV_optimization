@@ -36,7 +36,7 @@ except AttributeError:
 try:
     LAB3_IMAGE_DIRECTORY = Path(os.environ['CVL_LAB3_IMAGEDIR'])
 except KeyError:
-    LAB3_IMAGE_DIRECTORY = Path('/courses/TSBB15/images/lab3')
+    LAB3_IMAGE_DIRECTORY = Path('F:/kurser/master/tsbb15/Lab3/img')
 
 if not LAB3_IMAGE_DIRECTORY.exists():
     raise RuntimeError("Image directory '{}' does not exist. Try setting the CVL_LAB3_IMAGEDIR environment variable".format(LAB3_IMAGE_DIRECTORY))
