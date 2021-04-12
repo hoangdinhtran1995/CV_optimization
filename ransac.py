@@ -21,4 +21,4 @@ def ransac(p0, p1, N, t = 1):
             cur_max_inliers = np.sum(inliers)
             cur_F = F
 
-    return F
+    return cur_F
