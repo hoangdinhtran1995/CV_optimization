@@ -6,6 +6,8 @@ import lab3
 import matplotlib.pyplot as plt
 from get_interest_points import get_interest_points
 from get_corr import get_corr
+from ransac import ransac
+
 
 # load and show
 img = lab3.load_stereo_pair()
@@ -31,8 +33,19 @@ pt_coord_1 = get_interest_points(img_1)
 """
 p0, p1 = get_corr(img_0,img_1,pt_coord_0,pt_coord_1) #[x,y]
 
+"""
+3. RANSAC
+"""
+F = ransac(p0, p1, N = 100, t = 0.1)
 
-#
+"""
+Visualize epipolar lines
+"""
+lab3.show_corresp(img_0,img_1,p0,p1)
+plt.figure('epipolar lines 0')
+lab3.plot_eplines(F, p0, img_0.shape)
+plt.figure('epipolar lines 1')
+lab3.plot_eplines(F, p1, img_1.shape)
 
 #### testing area ####
 
@@ -46,7 +59,6 @@ p0, p1 = get_corr(img_0,img_1,pt_coord_0,pt_coord_1) #[x,y]
 # plt.imshow(points_0)
 # plt.figure(3)
 # plt.imshow(points_1)
-lab3.show_corresp(img_0,img_1,p0,p1)
 plt.show()
 
 
