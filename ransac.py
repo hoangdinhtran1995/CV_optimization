@@ -2,7 +2,7 @@ import lab3
 import random
 import numpy as np
 
-def ransac(p0, p1, N, t = 1):
+def ransac(p0, p1, N, t = 0.1):
     points = len(p0[0])
     cur_max_inliers = 0
     cur_F = None
