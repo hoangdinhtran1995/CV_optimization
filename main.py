@@ -9,15 +9,10 @@ from get_corr import get_corr
 from ransac import ransac
 
 
-# load and show
+# load data
 img = lab3.load_stereo_pair()
 img_0 = img[0]
 img_1 = img[1]
-# plt.figure(0)
-# plt.imshow(img[0])
-# plt.figure(1)
-# plt.imshow(img[1])
-# plt.show()
 
 """
 Compute the fundamental matrix between two images
@@ -50,17 +45,6 @@ plt.imshow(img_1)
 lab3.plot_eplines(F.T, p0, img_1.shape)
 
 #### testing area ####
-
-
-
-# plt.figure(0)
-# plt.imshow(harris_0)
-# plt.figure(1)
-# plt.imshow(harris_1)
-# plt.figure(2)
-# plt.imshow(points_0)
-# plt.figure(3)
-# plt.imshow(points_1)
 plt.show()
 
 

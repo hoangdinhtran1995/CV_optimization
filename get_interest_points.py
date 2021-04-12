@@ -1,5 +1,6 @@
 import lab3
 import numpy as np
+
 def get_interest_points(img, block_size=10, kernel_size=3, suppression_window_size = 17, threshold = 0.01):
     # harris
     harris = lab3.harris(img, block_size, kernel_size)

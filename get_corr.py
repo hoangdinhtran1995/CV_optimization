@@ -1,6 +1,5 @@
 import lab3
 import numpy as np
-import matplotlib.pyplot as plt
 
 def get_corr(img_0, img_1, points_0, points_1, ROI_size = 15):
     roi_0 = lab3.cut_out_rois(img_0, points_0[1], points_0[0], ROI_size)
