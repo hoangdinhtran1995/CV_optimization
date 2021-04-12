@@ -13,6 +13,6 @@ def get_interest_points(img, block_size=10, kernel_size=3, suppression_window_si
     points[harris > threshold] = 1
 
     # get coords for interest points
-    pt_coords = np.nonzero(points)
+    pt_coords = np.array(np.nonzero(points))
 
     return pt_coords
