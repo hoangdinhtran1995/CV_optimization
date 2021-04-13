@@ -80,12 +80,6 @@ D = least_squares(lambda x: lab3.fmatrix_residuals_gs(x, pl, pr), params)
 C0_new = np.reshape(D.x[0:12], [3, 4])
 F_new = lab3.fmatrix_from_cameras(C0_new, C1)
 
-print('C0:',C0)
-print('C0_new:',C0_new)
-print('C1:',C1)
-print('F:',F)
-print('F_new:',F_new)
-
 plt.figure('epipolar lines 0 - GS')
 plt.imshow(img_0)
 lab3.plot_eplines(F_new, pr, img_0.shape)
