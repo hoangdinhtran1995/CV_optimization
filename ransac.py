@@ -19,12 +19,17 @@ def ransac(p0, p1, N, t = 10):
         # print(residuals)
         inliers = np.zeros_like(residuals)
         inliers[abs(residuals) < t] = 1
-        # print(inliers)
+
+        # print(p0)
+        # print(inliers.sum(axis=0)==2)
+        # print(np.where(inliers.sum(axis=0)==2)[0])
+        # print(p0[:,np.where(inliers.sum(axis=0)==2)[0]])
 
         if np.sum(inliers) > cur_max_inliers:
+
             cur_max_inliers = np.sum(inliers)
             cur_F = F
-            cur_pl = pl
-            cur_pr = pr
+            cur_pl = p0[:, np.where(inliers.sum(axis=0) == 2)[0]]
+            cur_pr = p1[:, np.where(inliers.sum(axis=0) == 2)[0]]
 
     return cur_F, cur_pl, cur_pr

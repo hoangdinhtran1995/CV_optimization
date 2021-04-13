@@ -45,13 +45,12 @@ lab3.show_corresp(img_0,img_1,pl,pr)
 
 plt.figure('epipolar lines 0 - RANSAC')
 plt.imshow(img_0)
-lab3.plot_eplines(F, p1, img_0.shape)
+lab3.plot_eplines(F, pr, img_0.shape)
 plt.plot(pl[0], pl[1], 'o')
 plt.figure('epipolar lines 1 - RANSAC')
 plt.imshow(img_1)
-lab3.plot_eplines(F.T, p0, img_1.shape)
+lab3.plot_eplines(F.T, pl, img_1.shape)
 plt.plot(pr[0], pr[1], 'o')
-plt.show()
 
 """
 Gold Standard
@@ -63,8 +62,8 @@ Determine camera matrices from F and triangulate points
 C0, C1 = lab3.fmatrix_cameras(F)
 
 triangulated_points = []
-for i in range(p0.shape[1]):
-    p = lab3.triangulate_optimal(C0, C1, p0[:, i], p1[:, i])
+for i in range(pl.shape[1]):
+    p = lab3.triangulate_optimal(C0, C1, pl[:, i], pr[:, i])
     triangulated_points.append(p)
 
 triangulated_points = np.asarray(triangulated_points)
@@ -76,7 +75,7 @@ Calculate residuals and optimize a la gold standard
 # Stack to fit fmatrix_residuals_gs
 params = np.hstack((C0.ravel(), triangulated_points.ravel()))
 
-D = least_squares(lambda x: lab3.fmatrix_residuals_gs(x, p0, p1), params)
+D = least_squares(lambda x: lab3.fmatrix_residuals_gs(x, pl, pr), params)
 
 C0_new = np.reshape(D.x[0:12], [3, 4])
 F_new = lab3.fmatrix_from_cameras(C0_new, C1)
@@ -89,10 +88,10 @@ print('F_new:',F_new)
 
 plt.figure('epipolar lines 0 - GS')
 plt.imshow(img_0)
-lab3.plot_eplines(F_new, p1, img_0.shape)
+lab3.plot_eplines(F_new, pr, img_0.shape)
 plt.figure('epipolar lines 1 - GS')
 plt.imshow(img_1)
-lab3.plot_eplines(F_new.T, p0, img_1.shape)
+lab3.plot_eplines(F_new.T, pl, img_1.shape)
 
 #### testing area ####
 plt.show()
