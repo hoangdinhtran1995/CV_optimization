@@ -35,7 +35,7 @@ p0, p1 = get_corr(img_0,img_1,pt_coord_0,pt_coord_1) #[x,y]
 """
 3. RANSAC
 """
-F, pl, pr = ransac(p0, p1, N = 3000 , t = 5)
+F, pl, pr = ransac(p0, p1, N = 4000 , t = 2)
 
 """
 Visualize epipolar lines
@@ -88,6 +88,8 @@ plt.imshow(img_1)
 lab3.plot_eplines(F_new.T, pl, img_1.shape)
 
 #### testing area ####
+
+print('RANSAC residual square sum:', np.sum(np.square(lab3.fmatrix_residuals(F, pl, pr))))
+print('GS residual square sum:', np.sum(np.square(lab3.fmatrix_residuals(F_new, pl, pr))))
+
 plt.show()
-
-

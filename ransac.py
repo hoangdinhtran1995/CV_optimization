@@ -16,20 +16,14 @@ def ransac(p0, p1, N, t = 10):
         F = lab3.fmatrix_stls(pl, pr)
 
         residuals = lab3.fmatrix_residuals(F, p0, p1)
-        # print(residuals)
         inliers = np.zeros_like(residuals)
         inliers[abs(residuals) < t] = 1
 
-        # print(p0)
-        # print(inliers.sum(axis=0)==2)
-        # print(np.where(inliers.sum(axis=0)==2)[0])
-        # print(p0[:,np.where(inliers.sum(axis=0)==2)[0]])
-
-        if np.sum(inliers) > cur_max_inliers:
-
-            cur_max_inliers = np.sum(inliers)
+        if np.sum(inliers.sum(axis=0) == 2) > cur_max_inliers:
+            cur_max_inliers = np.sum(inliers.sum(axis=0) == 2)
             cur_F = F
             cur_pl = p0[:, np.where(inliers.sum(axis=0) == 2)[0]]
             cur_pr = p1[:, np.where(inliers.sum(axis=0) == 2)[0]]
 
+    print('INLIER ratio', cur_max_inliers/len(p0[0]))
     return cur_F, cur_pl, cur_pr
